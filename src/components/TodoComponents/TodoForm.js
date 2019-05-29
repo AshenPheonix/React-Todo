@@ -20,17 +20,21 @@ export default class Drawer extends Component {
                     New Task: 
                     <input type="text" onChange={this.formEdit} value={this.state.name} placeholder="New Task" />
                 </label>
-                <button
-                    type="submit"
-                >
-                    Submit
-                </button>
-                <button onClick={this.clear} type="button">Clear Completed</button>
+                <section>
+                    <button
+                        type="submit"
+                    >
+                        Submit
+                    </button>
+                    <button onClick={this.clear} type="button">Clear Completed</button>
+                </section>
             </form>
         )
     }
     handleSubmit(e){
         e.preventDefault();
+        if(this.state.name==='')
+            return;
         this.props.submit({
             task:this.state.name,
             id:Math.round(Math.random()*100000 + 1),

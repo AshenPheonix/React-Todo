@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import Todo from './Todo'
 import TodoForm from './TodoForm'
+import './Todo.css'
 
 export default class TodoList extends Component {
     constructor(props){
@@ -14,7 +15,7 @@ export default class TodoList extends Component {
     render() {
         return (
             <section className="wrapper">
-                <section className="taskList">
+                <section className="task-list">
                     {this.props.list.map((task)=>(
                         <Todo
                             completed={task.completed}
