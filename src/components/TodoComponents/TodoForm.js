@@ -8,40 +8,35 @@ export default class Drawer extends Component {
             name:''
         }
 
-        this.submit=this.submit.bind(this)
+        this.handleSubmit=this.handleSubmit.bind(this)
         this.formEdit=this.formEdit.bind(this)
     }
     
     render() {
         return (
-            <form onSubmit={this.submit}>
+            <form onSubmit={this.handleSubmit}>
                 <label>
                     New Task: 
-                    <input 
-                        type='text'
-                        onKeyUp={this.formEdit}
-                        value={this.state.name}
-                        placeholder="New Task"
-                    />
+                    <input type="text" onChange={this.formEdit} value={this.state.name} placeholder="New Task" />
                 </label>
-                <submit
+                <button
+                    type="submit"
                 />
             </form>
         )
     }
-    submit(e){
+    handleSubmit(e){
         e.preventDefault();
         this.props.submit({
-            task:'',
+            task:this.state.name,
             id:Math.round(Math.random()*100000 + 1),
             completed:false
         })
     }
     formEdit(e){
         if(e.key==='Enter')
-            this.submit()
-        else{
-            this.setState({name:e.currentTarget.value})
-        }
+            this.handleSubmit()
+        else
+            this.setState({name:e.target.value})
     }
 }
