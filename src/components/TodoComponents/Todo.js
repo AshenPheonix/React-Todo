@@ -8,14 +8,20 @@ export default class Todo extends Component {
     }
     
     render() {
+        let classlist='todo'
+        if(this.props.completed===true)
+            classlist+=' complete'
         return (
-            <section>
-                <input type="checkbox" checked={this.props.completed} onChange={this.toggle} />: {this.props.task}
+            <section 
+                onClick={this.toggle}
+                className={classlist}
+            >
+                {this.props.task}
             </section>
         )
     }
 
     toggle(e){
-        this.props.edit(this.props.key)
+        this.props.edit(this.props.id)
     }
 }

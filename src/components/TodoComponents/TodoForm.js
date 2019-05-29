@@ -25,7 +25,7 @@ export default class Drawer extends Component {
                 >
                     Submit
                 </button>
-                <button onClick={this.clear}>Clear Completed</button>
+                <button onClick={this.clear} type="button">Clear Completed</button>
             </form>
         )
     }

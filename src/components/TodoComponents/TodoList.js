@@ -20,6 +20,7 @@ export default class TodoList extends Component {
                             completed={task.completed}
                             task={task.task}
                             key={task.id}
+                            id={task.id}
                             edit={this.checkmark}
                         />
                     ))}
@@ -35,7 +36,7 @@ export default class TodoList extends Component {
         this.props.add(e)
     }
     checkmark(e){
-        this.props.add(e)
+        this.props.edit(e)
     }
     clear(e){
         this.props.clear()
