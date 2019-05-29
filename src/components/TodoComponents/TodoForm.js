@@ -32,6 +32,7 @@ export default class Drawer extends Component {
             id:Math.round(Math.random()*100000 + 1),
             completed:false
         })
+        this.setState({name:''})
     }
     formEdit(e){
         if(e.key==='Enter')

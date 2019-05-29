@@ -28,10 +28,15 @@ class App extends React.Component {
   }
 
   add(e){
-    console.log('yo')
     let temp=this.state.list.map(i=>i)
     temp.push(e)
+    localStorage.setItem('tasks',JSON.stringify(temp))
     this.setState({list:temp})
+  }
+
+  componentDidMount(){
+    if(localStorage.getItem('tasks'))
+      this.setState({list:JSON.parse(localStorage.getItem('tasks'))})
   }
 }
 
