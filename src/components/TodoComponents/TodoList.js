@@ -9,6 +9,7 @@ export default class TodoList extends Component {
         super(props)
         this.checkmark=this.checkmark.bind(this)
         this.add=this.add.bind(this)
+        this.clear=this.clear.bind(this)
     }
     render() {
         return (
@@ -25,6 +26,7 @@ export default class TodoList extends Component {
                 </section>
                 <TodoForm
                     submit={this.add}
+                    clear={this.clear}
                 />
             </section>
         )
@@ -34,5 +36,8 @@ export default class TodoList extends Component {
     }
     checkmark(e){
         this.props.add(e)
+    }
+    clear(e){
+        this.props.clear()
     }
 }

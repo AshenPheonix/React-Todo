@@ -10,6 +10,7 @@ export default class Drawer extends Component {
 
         this.handleSubmit=this.handleSubmit.bind(this)
         this.formEdit=this.formEdit.bind(this)
+        this.clear=this.clear.bind(this)
     }
     
     render() {
@@ -21,7 +22,10 @@ export default class Drawer extends Component {
                 </label>
                 <button
                     type="submit"
-                />
+                >
+                    Submit
+                </button>
+                <button onClick={this.clear}>Clear Completed</button>
             </form>
         )
     }
@@ -39,5 +43,8 @@ export default class Drawer extends Component {
             this.handleSubmit()
         else
             this.setState({name:e.target.value})
+    }
+    clear(e){
+        this.props.clear();
     }
 }

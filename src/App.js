@@ -11,6 +11,7 @@ class App extends React.Component {
     }
 
     this.add=this.add.bind(this)
+    this.clear=this.clear.bind(this)
   }
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -22,6 +23,7 @@ class App extends React.Component {
         <TodoList
           list={this.state.list}
           add={this.add}
+          clear={this.clear}
         />
       </div>
     );
@@ -37,6 +39,9 @@ class App extends React.Component {
   componentDidMount(){
     if(localStorage.getItem('tasks'))
       this.setState({list:JSON.parse(localStorage.getItem('tasks'))})
+  }
+  clear(){
+    let temp=this.state.tasks.map(i=>i).filter(i=>i.completed===false)
   }
 }
 
