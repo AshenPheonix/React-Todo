@@ -29,17 +29,19 @@ export default class TodoList extends Component {
                 <TodoForm
                     submit={this.add}
                     clear={this.clear}
+                    name={this.props.newTaskName}
+                    formChange={this.props.formChange}
                 />
             </section>
         )
     }
-    add(e){
+    add=e=>{
         this.props.add(e)
     }
-    checkmark(e){
+    checkmark=e=>{
         this.props.edit(e)
     }
-    clear(e){
+    clear=e=>{
         this.props.clear()
     }
 }

@@ -8,12 +8,9 @@ class App extends React.Component {
     super(props)
 
     this.state={
-      list:List
+      list:List,
+      newTaskName:''
     }
-
-    this.add=this.add.bind(this)
-    this.clear=this.clear.bind(this)
-    this.edit=this.edit.bind(this)
   }
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -21,37 +18,42 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
         <TodoList
           list={this.state.list}
           add={this.add}
           clear={this.clear}
           edit={this.edit}
+          formChange={this.formChange}
+          newTaskName={this.state.newTaskName}
         />
       </div>
     );
   }
 
-  add(e){
+  add=e=>{
     let temp=this.state.list.map(i=>i)
     temp.push(e)
     localStorage.setItem('tasks',JSON.stringify(temp))
-    this.setState({list:temp})
+    this.setState({list:temp,newTaskName:''})
   }
 
   componentDidMount(){
-    // if(localStorage.getItem('tasks'))
-    //   this.setState({list:JSON.parse(localStorage.getItem('tasks'))})
+    if(localStorage.getItem('tasks'))
+      this.setState({list:JSON.parse(localStorage.getItem('tasks'))})
   }
   
-  clear(){
+  clear=()=>{
     let temp=this.state.list.map(i=>i).filter(i=>i.completed===false)
     this.setState({list:temp})
   }
 
-  edit(item){
+  edit=item=>{
     let temp=this.state.list.map(i=>(i.id!==item)?i:{task:i.task,id:i.id,completed:!i.completed})
     this.setState({list:temp})
+  }
+
+  formChange=e=>{
+    this.setState({newTaskName:e.target.value})
   }
 }
 
