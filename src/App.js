@@ -29,18 +29,27 @@ class App extends React.Component {
       </div>
     );
   }
-
-  add=e=>{
-    let temp=this.state.list.map(i=>i)
-    temp.push(e)
-    localStorage.setItem('tasks',JSON.stringify(temp))
-    this.setState({list:temp,newTaskName:''})
-  }
-
+  
   componentDidMount(){
     if(localStorage.getItem('tasks'))
       this.setState({list:JSON.parse(localStorage.getItem('tasks'))})
   }
+
+  add=e=>{
+    e.preventDefault();
+    
+    let temp=this.state.list.map(i=>i)
+    
+    temp.push({
+      task:this.state.newTaskName,
+      id:Math.round(Math.random()*100000 + 1),
+      completed:false
+    })
+    
+    localStorage.setItem('tasks',JSON.stringify(temp))
+    this.setState({list:temp,newTaskName:''})
+  }
+
   
   clear=()=>{
     let temp=this.state.list.map(i=>i).filter(i=>i.completed===false)
@@ -53,7 +62,10 @@ class App extends React.Component {
   }
 
   formChange=e=>{
-    this.setState({newTaskName:e.target.value})
+    if(e.key==='Enter')
+        this.handleSubmit()
+    else
+        this.setState({newTaskName:e.target.value})
   }
 }
 

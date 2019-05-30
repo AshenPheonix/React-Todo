@@ -6,12 +6,6 @@ import TodoForm from './TodoForm'
 import './Todo.css'
 
 export default class TodoList extends Component {
-    constructor(props){
-        super(props)
-        this.checkmark=this.checkmark.bind(this)
-        this.add=this.add.bind(this)
-        this.clear=this.clear.bind(this)
-    }
     render() {
         return (
             <section className="wrapper">
@@ -22,26 +16,17 @@ export default class TodoList extends Component {
                             task={task.task}
                             key={task.id}
                             id={task.id}
-                            edit={this.checkmark}
+                            edit={this.props.edit}
                         />
                     ))}
                 </section>
                 <TodoForm
-                    submit={this.add}
-                    clear={this.clear}
+                    submit={this.props.add}
+                    clear={this.props.clear}
                     name={this.props.newTaskName}
                     formChange={this.props.formChange}
                 />
             </section>
         )
-    }
-    add=e=>{
-        this.props.add(e)
-    }
-    checkmark=e=>{
-        this.props.edit(e)
-    }
-    clear=e=>{
-        this.props.clear()
     }
 }

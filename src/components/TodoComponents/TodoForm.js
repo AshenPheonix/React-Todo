@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 export default class Drawer extends Component {
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.props.submit}>
                 <label>
                     New Task: 
-                    <input type="text" onChange={this.formEdit} value={this.props.name} placeholder="New Task" />
+                    <input type="text" onChange={this.props.formChange} value={this.props.name} placeholder="New Task" />
                 </label>
                 <section>
                     <button
@@ -19,19 +19,4 @@ export default class Drawer extends Component {
             </form>
         )
     }
-    handleSubmit=e=>{
-        e.preventDefault();
-        this.props.submit({
-            task:this.props.name,
-            id:Math.round(Math.random()*100000 + 1),
-            completed:false
-        })
-    }
-    formEdit=e=>{
-        if(e.key==='Enter')
-            this.handleSubmit()
-        else
-            this.props.formChange(e)
-    }
-    
 }
