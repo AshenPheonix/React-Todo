@@ -34,7 +34,10 @@ class App extends React.Component {
     if(localStorage.getItem('tasks'))
       this.setState({list:JSON.parse(localStorage.getItem('tasks'))})
   }
-
+  componentDidUpdate(){
+    localStorage.setItem('tasks',JSON.stringify(this.state.list))
+  }
+  
   add=e=>{
     e.preventDefault();
     
@@ -45,8 +48,6 @@ class App extends React.Component {
       id:Math.round(Math.random()*100000 + 1),
       completed:false
     })
-    
-    localStorage.setItem('tasks',JSON.stringify(temp))
     this.setState({list:temp,newTaskName:''})
   }
 

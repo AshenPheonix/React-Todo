@@ -5,7 +5,7 @@ import Todo from './Todo'
 import TodoForm from './TodoForm'
 import './Todo.css'
 
-export default class TodoList extends Component {
+export default class extends Component {
     render() {
         return (
             <section className="wrapper">
