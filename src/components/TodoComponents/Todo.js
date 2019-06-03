@@ -1,27 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component as C } from 'react'
 import './Todo.css'
 
-export default class Todo extends Component {
-    constructor(props) {
-        super(props)
-        this.toggle=this.toggle.bind(this)
-    }
-    
+export default class extends C {
     render() {
         let classlist='todo'
         if(this.props.completed===true)
             classlist+=' complete'
         return (
             <section 
-                onClick={this.toggle}
+                onClick={ ()=> this.props.edit(this.props.id) }
                 className={classlist}
             >
-                {this.props.task}
+                { this.props.task }
             </section>
         )
-    }
-
-    toggle(e){
-        this.props.edit(this.props.id)
     }
 }
